@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/screens/utils/mydefaults.dart';
+import 'package:project/screens/utils/mywidgets.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -28,44 +29,26 @@ TextEditingController passwordcontroller = TextEditingController();
           height: _myconfig.myHeight*2,
         ),
 
-        SizedBox(
-          width: MediaQuery.of(context).size.width - 80,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-        BoxShadow(
-          color: Colors.grey.shade400,
-          blurRadius: 5,
-          offset: Offset(0, 2)
-        )
-        
-              ]
-            ),
-            child: TextFormField(
-              controller:cellphonecontroller ,
-              keyboardType: TextInputType.phone,
-              obscureText: false,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(color: Colors.white, width: 1),),
-                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
-                 borderSide: BorderSide(color: Colors.white, width: 1),),
-                 enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
-                 borderSide: BorderSide(color: Colors.white, width: 1),),
-                hintText: "Cell Number",
-                contentPadding: EdgeInsets.symmetric(vertical: 18),
-                prefixIcon: Padding(padding: EdgeInsets.symmetric( horizontal: 16.0), 
-                child: Icon(Icons.call, size: _myconfig.myIconSize, color: _myconfig.myIconColor,),
-                
-                )
-              ),
-        
-            ),
-          ),
+        MyInputField(
+          myicon: Icon(Icons.call,size: _myconfig.myIconSize, color: _myconfig.myIconColor ),
+
+          mykeyboard: TextInputType.phone,
+          hinttext: "Cell Number",
+          mycontoller: cellphonecontroller, 
+        obsecure: false,
+       ),
+         SizedBox(
+          height: _myconfig.myHeight*2,
         ),
+        MyInputField(myicon: Icon(Icons.lock, size: _myconfig.myIconSize, color: _myconfig.myIconColor), 
+        mykeyboard: TextInputType.text, 
+        hinttext: "Password", 
+        obsecure: true,
+         mycontoller: passwordcontroller)
+      
+
+
+         
         
 
       ],)
@@ -74,4 +57,3 @@ TextEditingController passwordcontroller = TextEditingController();
     );
   }
 }
-
