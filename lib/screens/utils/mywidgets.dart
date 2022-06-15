@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:project/screens/utils/mydefaults.dart';
-Myconfig _myconfig = Myconfig();
 
 
+
+// This is my own inputfield
 class MyInputField extends StatefulWidget {
 
   final TextEditingController mycontoller;
@@ -64,7 +64,7 @@ class _MyInputFieldState extends State<MyInputField> {
             contentPadding: EdgeInsets.symmetric(vertical: 18),
             prefixIcon: Padding(padding: EdgeInsets.symmetric( horizontal: 16.0), 
             child: widget.myicon,
-             //child: Icon(widget.myicon, size: _myconfig.myIconSize, color: _myconfig.myIconColor,),
+          
             
             )
           ),
@@ -75,3 +75,92 @@ class _MyInputFieldState extends State<MyInputField> {
   }
 }
 
+// OWn Button widget
+
+
+class MyButton extends StatefulWidget {
+
+  final String buttontext;
+  final Function ontap;
+
+
+  const MyButton({
+    Key? key, 
+    required this.ontap,
+    required this.buttontext,
+  }) : super(key: key);
+
+  @override
+  State<MyButton> createState() => _MyButtonState();
+}
+
+class _MyButtonState extends State<MyButton> {
+  @override
+  Widget build(BuildContext context) {
+    return     Container(
+     width:  MediaQuery.of(context).size.width - 80,
+     height: 50,
+    child:   ElevatedButton(onPressed:(){
+      widget.ontap();
+    },
+        
+    
+      
+    
+      child: Text(widget.buttontext,
+    
+      style: TextStyle(
+    
+        color: Colors.white,
+    
+        letterSpacing: 1.5,
+    
+        fontSize: 20,
+    
+        fontWeight: FontWeight.bold
+    
+      ),
+    
+      ),
+    
+      
+    
+      style: ButtonStyle(
+    
+        backgroundColor: MaterialStateProperty.all(Colors.red),
+    
+      
+    
+      
+    
+      
+    
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    
+      
+    
+          RoundedRectangleBorder(
+    
+      
+    
+            borderRadius: BorderRadius.circular(15))
+    
+      
+    
+          )
+    
+      
+    
+      ),
+    
+      
+    
+      
+    
+      
+    
+      ),
+    
+    );
+  }
+}

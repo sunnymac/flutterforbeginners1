@@ -46,15 +46,31 @@ TextEditingController confirmpasswordcontroller = TextEditingController();
         hinttext: "Password", 
         obsecure: true,
          mycontoller: passwordcontroller),
-        //   SizedBox(
-        //   height: _myconfig.myHeight*2,
-        // ),
+          SizedBox(
+          height: _myconfig.myHeight*2,
+        ),
         // MyInputField(myicon: Icon(Icons.lock, size: _myconfig.myIconSize, color: _myconfig.myIconColor),
         //  mykeyboard: TextInputType.text,
         //   hinttext: "Confirm Password",
         //    obsecure: true,
         //     mycontoller: confirmpasswordcontroller)
       
+Text("Forgot Password?", style: TextStyle(
+  fontWeight: FontWeight.bold
+),),
+SizedBox(
+   height: _myconfig.myHeight*2,
+),
+
+MyButton(
+  ontap: (){},
+  buttontext: "SIGN IN",
+),
+SizedBox(
+  height: _myconfig.myHeight*2,
+),
+MyButton(ontap: (){}, buttontext: "SIGN UP")
+
 
 
          
