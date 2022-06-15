@@ -15,6 +15,7 @@ Myconfig _myconfig = Myconfig();
 
 TextEditingController cellphonecontroller = TextEditingController();
 TextEditingController passwordcontroller = TextEditingController();
+TextEditingController confirmpasswordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,15 @@ TextEditingController passwordcontroller = TextEditingController();
         mykeyboard: TextInputType.text, 
         hinttext: "Password", 
         obsecure: true,
-         mycontoller: passwordcontroller)
+         mycontoller: passwordcontroller),
+        //   SizedBox(
+        //   height: _myconfig.myHeight*2,
+        // ),
+        // MyInputField(myicon: Icon(Icons.lock, size: _myconfig.myIconSize, color: _myconfig.myIconColor),
+        //  mykeyboard: TextInputType.text,
+        //   hinttext: "Confirm Password",
+        //    obsecure: true,
+        //     mycontoller: confirmpasswordcontroller)
       
 
 

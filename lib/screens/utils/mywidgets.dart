@@ -51,7 +51,9 @@ class _MyInputFieldState extends State<MyInputField> {
           keyboardType: widget.mykeyboard,
           obscureText: widget.obsecure,
           decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
+
+            focusedBorder: 
+            OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide(color: Colors.white, width: 1),),
              border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
