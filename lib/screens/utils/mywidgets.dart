@@ -1,28 +1,27 @@
 
 import 'package:flutter/material.dart';
+import 'package:project/screens/utils/mydefaults.dart';
 
+MyConfig _myConfig = MyConfig();
 
-
-// This is my own inputfield
 class MyInputField extends StatefulWidget {
-
-  final TextEditingController mycontoller;
-  final bool obsecure;
+  // Custom Input Field
+  final TextEditingController mycontroller;
   final String hinttext;
-  final TextInputType mykeyboard;
+  final bool hidedata;
   final Icon myicon;
+  final TextInputType keyboardtype;
+  final validator;
+
   const MyInputField({
-    Key? key,
+    required this.keyboardtype,
     required this.myicon,
-    required this.mykeyboard,
+    required this.mycontroller,
+    required this.hidedata,
     required this.hinttext,
-    required this.obsecure,
-    required this.mycontoller,
-    
-  }) :  super(key: key);
-
-
- 
+    this.validator,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MyInputField> createState() => _MyInputFieldState();
@@ -30,137 +29,109 @@ class MyInputField extends StatefulWidget {
 
 class _MyInputFieldState extends State<MyInputField> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width - 80,
+      // height: 50,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
-    BoxShadow(
-      color: Colors.grey.shade400,
-      blurRadius: 5,
-      offset: Offset(0, 2)
-    )
-    
-          ]
+            BoxShadow(
+              color: Colors.grey.shade400,
+              blurRadius: 5,
+              offset: Offset(0, 2), // Shadow position
+            ),
+          ],
         ),
         child: TextFormField(
-          controller:widget.mycontoller ,
-          keyboardType: widget.mykeyboard,
-          obscureText: widget.obsecure,
-          decoration: InputDecoration(
-
-            focusedBorder: 
-            OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.white, width: 1),),
-             border: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
-             borderSide: BorderSide(color: Colors.white, width: 1),),
-             enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15),
-             borderSide: BorderSide(color: Colors.white, width: 1),),
-            hintText: widget.hinttext,
-            contentPadding: EdgeInsets.symmetric(vertical: 18),
-            prefixIcon: Padding(padding: EdgeInsets.symmetric( horizontal: 16.0), 
-            child: widget.myicon,
-          
-            
-            )
+          controller: widget.mycontroller,
+          // validator: widget.validator,
+          autofocus: false,
+          keyboardType: widget.keyboardtype,
+          style: TextStyle(
+            color: Colors.black,
           ),
-    
+          obscureText: widget.hidedata,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 18.0),
+            prefixIcon: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: widget.myicon,
+            ),
+            hintText: widget.hinttext,
+            hintStyle: TextStyle(
+              color: Colors.black,
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(width: 1, color: Colors.white),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(width: 1, color: Colors.white),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(width: 1, color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
-// OWn Button widget
-
-
-class MyButton extends StatefulWidget {
-
+//Cutom Button Require Button Color, Text Color and On Tap Method
+class MyButton extends StatelessWidget {
+  final Color bgcolor;
+  final Color textcolor;
+  final double btnwidth;
+  final Function onTap;
   final String buttontext;
-  final Function ontap;
-
+  final double btntextsize;
 
   const MyButton({
-    Key? key, 
-    required this.ontap,
+    required this.btnwidth,
+    required this.btntextsize,
     required this.buttontext,
+    required this.textcolor,
+    required this.onTap,
+    required this.bgcolor,
+    Key? key,
   }) : super(key: key);
 
   @override
-  State<MyButton> createState() => _MyButtonState();
-}
-
-class _MyButtonState extends State<MyButton> {
-  @override
   Widget build(BuildContext context) {
-    return     Container(
-     width:  MediaQuery.of(context).size.width - 80,
-     height: 50,
-    child:   ElevatedButton(onPressed:(){
-      widget.ontap();
-    },
-        
-    
-      
-    
-      child: Text(widget.buttontext,
-    
-      style: TextStyle(
-    
-        color: Colors.white,
-    
-        letterSpacing: 1.5,
-    
-        fontSize: 20,
-    
-        fontWeight: FontWeight.bold
-    
+    return Container(
+      width: btnwidth,
+      height: 50,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(_myConfig.myRadius * 1))),
+          backgroundColor: MaterialStateProperty.all(bgcolor),
+        ),
+        onPressed: () {
+          onTap();
+        },
+        child: Text(
+          buttontext,
+          style: TextStyle(
+            letterSpacing: 1.5,
+            fontSize: btntextsize,
+            color: textcolor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-    
-      ),
-    
-      
-    
-      style: ButtonStyle(
-    
-        backgroundColor: MaterialStateProperty.all(Colors.red),
-    
-      
-    
-      
-    
-      
-    
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-    
-      
-    
-          RoundedRectangleBorder(
-    
-      
-    
-            borderRadius: BorderRadius.circular(15))
-    
-      
-    
-          )
-    
-      
-    
-      ),
-    
-      
-    
-      
-    
-      
-    
-      ),
-    
     );
   }
 }
