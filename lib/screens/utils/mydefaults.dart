@@ -43,9 +43,13 @@ class MyConfig {
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.black,
         textColor: Colors.white,
+      
+       webPosition: "left",
         fontSize: 16.0);
     return true;
   }
+
+
 
 // All Validation here
 

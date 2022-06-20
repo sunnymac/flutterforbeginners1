@@ -135,3 +135,63 @@ class MyButton extends StatelessWidget {
     );
   }
 }
+
+// Searchbar and filter
+
+class SearchBar extends StatelessWidget {
+  final double height;
+  final bool showFilterIcon;
+  final bool showSearchIcon;
+  final Function onTap;
+  final String text;
+
+  const SearchBar(
+      {Key? key,
+      required this.showSearchIcon,
+      required this.text,
+      required this.height,
+      required this.showFilterIcon,
+      required this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+      
+        onTap();
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width,
+        height: height,
+        // color: Colors.green,
+        child: Row(
+          children: [
+            SizedBox(width: _myConfig.myWidth),
+            showSearchIcon
+                ? Row(
+                    children: [
+                      Icon(Icons.search),
+                      SizedBox(width: _myConfig.myWidth),
+                    ],
+                  )
+                : Container(),
+            Text(
+              text,
+              style: TextStyle(color: Color(0xFF6D6F71)),
+            ),
+          
+            Spacer(), //Icon(Icons.filter_alt_outlined)
+            showFilterIcon
+                ? ImageIcon(AssetImage("assets/images/filter.png"))
+                : Container(),
+            SizedBox(width: _myConfig.myWidth),
+          ],
+        ),
+        decoration: BoxDecoration(
+            color: Color(0XFFEDF2F7), borderRadius: BorderRadius.circular(20)),
+      ),
+    );
+  }
+}
